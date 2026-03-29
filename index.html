@@ -49,9 +49,23 @@
   </script>
 
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+  <link id="gfonts" rel="stylesheet" href="" />
 </head>
 <body>
+
+  <!-- COOKIE CONSENT -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+      <div class="cookie-text">
+        <strong>🍪 Cookies & Datenschutz</strong>
+        <p>Diese Website nutzt externe Dienste (YouTube, Google Fonts), die Cookies setzen und Daten an Dritte übertragen können. Mit „Akzeptieren" stimmst du der Nutzung zu. Mehr Infos im <a href="impressum.html">Impressum</a>.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="cookie-btn decline" onclick="setConsent(false)">Ablehnen</button>
+        <button class="cookie-btn accept"  onclick="setConsent(true)">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
 
   <!-- NAV -->
   <nav class="navbar" id="navbar">
@@ -314,6 +328,29 @@
   </footer>
 
   <script>
+    /* ── Cookie Consent ──────────────────────────── */
+    function setConsent(accepted) {
+      localStorage.setItem('cookieConsent', accepted ? 'yes' : 'no');
+      document.getElementById('cookieBanner').style.display = 'none';
+      if (accepted) loadExternalServices();
+    }
+
+    function loadExternalServices() {
+      // Load Google Fonts
+      document.getElementById('gfonts').href =
+        'https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap';
+    }
+
+    // Check on load
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent === 'yes') {
+      document.getElementById('cookieBanner').style.display = 'none';
+      loadExternalServices();
+    } else if (consent === 'no') {
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+    // else: banner stays visible
+
     /* ── Story Logic ─────────────────────────────── */
     const slides      = document.querySelectorAll('.story-slide');
     const progressBar = document.getElementById('storyProgress');
@@ -411,6 +448,10 @@
 
     /* ── Video Accordion ─────────────────────────── */
     function openVideo() {
+      if (localStorage.getItem('cookieConsent') !== 'yes') {
+        alert('Bitte stimme zuerst den Cookies zu, um YouTube-Videos zu laden.');
+        return;
+      }
       const frame = document.getElementById('ytFrame');
       frame.src = frame.dataset.src;
       document.getElementById('videoThumb').style.display  = 'none';
