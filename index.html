@@ -48,8 +48,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="style.css" />
-  <link id="gfonts" rel="stylesheet" href="" />
+  <link rel="stylesheet" href="style.css?v=20260329" />  <link id="gfonts" rel="stylesheet" href="" />
 </head>
 <body>
 
@@ -127,7 +126,7 @@
   <section class="section dark" id="stories">
     <div class="container">
       <h2 class="section-title">Stories</h2>
-      <p class="section-sub">Tap links / rechts zum Wechseln · Swipe auf Mobile</p>
+      
 
       <div class="phone-wrap">
         <div class="phone-frame">
@@ -222,7 +221,7 @@
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">DJ buchen – Über mich</h2>
+      <h2 class="section-title">Über mich</h2>
       <div class="about-grid">
         <div class="about-text">
           <p>
@@ -254,8 +253,8 @@
             <div class="eq-item">
               <span class="eq-item-icon">🔊</span>
               <div class="eq-item-info">
-                <span class="eq-item-name">JBL Speaker System</span>
-                <span class="eq-item-desc">Professionelle PA-Beschallung</span>
+                <span class="eq-item-name">2 x 160 W Professionelle PA-Beschallung</span>
+                <span class="eq-item-desc">JBL 120 Speaker</span>
               </div>
             </div>
             <div class="eq-item">
@@ -350,12 +349,52 @@
   <section class="section" id="booking">
     <div class="container">
       <h2 class="section-title">Booking</h2>
-      <p class="section-sub">Interesse an einem Set? Meld dich direkt.</p>
-      <div class="contact-box">
-        <span class="contact-icon">✉️</span>
-        <div>
-          <p>E-Mail</p>
-          <a href="mailto:baris_er@icloud.com">baris_er@icloud.com</a>
+      <p class="section-sub">Habe ich dein Interesse geweckt? Schreib mir gerne per E-Mail eine Nachricht.</p>
+
+      <div class="contact-row">
+        <!-- E-Mail -->
+        <div class="contact-box">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <p>E-Mail</p>
+            <a href="mailto:baris_er@icloud.com">baris_er@icloud.com</a>
+          </div>
+        </div>
+
+        <!-- Buchungsbedingungen Teaser → klickbar -->
+        <div class="contact-box contact-box--clickable" onclick="togglePricing()" id="bookingCondBox" aria-expanded="false" role="button" tabindex="0">
+          <span class="contact-icon">📋</span>
+          <div style="flex:1">
+            <p>Buchungsbedingungen</p>
+            <span class="contact-teaser">Individuelle Absprache · faire Konditionen</span>
+          </div>
+          <svg class="pricing-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="pricing-details" id="pricingDetails">
+        <div class="pricing-inner">
+          <div class="pricing-grid">
+            <div class="pricing-item">
+              <span class="pricing-label">🎛️ Stundensatz</span>
+              <strong class="pricing-value">250 € / Std.</strong>
+            </div>
+            <div class="pricing-item">
+              <span class="pricing-label">📦 Pauschalangebot</span>
+              <strong class="pricing-value">1.200 € / Tag</strong>
+            </div>
+            <div class="pricing-item">
+              <span class="pricing-label">🚗 Anfahrt</span>
+              <strong class="pricing-value">ab 50 km · 0,40 € / km</strong>
+            </div>
+            <div class="pricing-item">
+              <span class="pricing-label">🔊 Equipment</span>
+              <strong class="pricing-value">Inklusive</strong>
+            </div>
+            
+            
+          </div>
+          <p class="pricing-note">Alle Preise sind Richtwerte – wir gehen noch einmal alles Schritt für Schritt durch. Es gibt keine versteckten Kosten, versprochen! 🤝</p>
         </div>
       </div>
     </div>
@@ -363,7 +402,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2026 DJ ERMN &nbsp;·&nbsp; <a href="impressum.html" style="color:var(--muted);text-decoration:none;">Impressum</a></p>
+    <p>© 2026 DJ ERMN &nbsp;·&nbsp; <a href="impressum.html" style="color:var(--muted);text-decoration:none;">Impressum</a> &nbsp;·&nbsp; <a href="agb.html" style="color:var(--muted);text-decoration:none;">AGB</a></p>
   </footer>
 
   <script>
@@ -515,6 +554,14 @@
     function closeMenu() {
       hamburger.classList.remove('open');
       navLinks.classList.remove('open');
+    }
+
+    /* ── Pricing Toggle ───────────────────────────── */
+    function togglePricing() {
+      const box     = document.getElementById('bookingCondBox');
+      const details = document.getElementById('pricingDetails');
+      const isOpen  = details.classList.toggle('open');
+      box.setAttribute('aria-expanded', isOpen);
     }
 
     /* ── Video Accordion ─────────────────────────── */
