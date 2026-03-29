@@ -402,7 +402,7 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2026 DJ ERMN &nbsp;·&nbsp; <a href="impressum.html" style="color:var(--muted);text-decoration:none;">Impressum</a> &nbsp;·&nbsp; <a href="agb.html" style="color:var(--muted);text-decoration:none;">AGB</a></p>
+    <p>© 2026 DJ ERMN &nbsp;·&nbsp; <a href="impressum.html" style="color:var(--muted);text-decoration:none;">Impressum</a> &nbsp;·&nbsp; <a href="agb.html" style="color:var(--muted);text-decoration:none;">AGB</a> &nbsp;·&nbsp; <a href="#" onclick="openCookieSettings();return false;" style="color:var(--muted);text-decoration:none;">Cookie-Einstellungen</a></p>
   </footer>
 
   <script>
@@ -564,10 +564,24 @@
       box.setAttribute('aria-expanded', isOpen);
     }
 
+    function openCookieSettings() {
+      document.getElementById('chkFonts').checked   = localStorage.getItem('cookieFonts')   === 'yes';
+      document.getElementById('chkYoutube').checked = localStorage.getItem('cookieYoutube') === 'yes';
+      banner.style.display = 'flex';
+      banner.classList.remove('cookie-hide');
+      banner.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => { banner.style.opacity = '1'; }));
+    }
+
     /* ── Video Accordion ─────────────────────────── */
     function openVideo() {
       if (localStorage.getItem('cookieYoutube') !== 'yes') {
-        alert('Bitte stimme unter "Auswahl speichern" dem Laden von YouTube-Videos zu.');
+        // Checkboxen auf aktuellen Stand setzen und Banner öffnen
+        document.getElementById('chkFonts').checked   = localStorage.getItem('cookieFonts')   === 'yes';
+        document.getElementById('chkYoutube').checked = false;
+        banner.style.display = 'flex';
+        banner.classList.remove('cookie-hide');
+        requestAnimationFrame(() => requestAnimationFrame(() => { banner.style.opacity = '1'; }));
         return;
       }
       const frame = document.getElementById('ytFrame');
