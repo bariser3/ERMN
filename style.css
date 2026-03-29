@@ -654,6 +654,13 @@ body {
 }
 
 /* ── CONTACT ──────────────────────────────────────── */
+.contact-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
 .contact-box {
   display: flex;
   align-items: center;
@@ -662,7 +669,14 @@ body {
   border: 1px solid rgba(58,158,95,0.3);
   border-radius: 8px;
   padding: 1.5rem 2rem;
+  flex: 1 1 260px;
   max-width: 480px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.contact-box:hover {
+  background: rgba(58,158,95,0.15);
+  border-color: rgba(58,158,95,0.6);
 }
 
 .contact-icon {
@@ -677,7 +691,7 @@ body {
 }
 
 .contact-box a {
-  color: var(--accent-bright);
+  color: #ffffff;
   font-size: 1.15rem;
   font-weight: 700;
   text-decoration: none;
@@ -686,6 +700,84 @@ body {
 
 .contact-box a:hover {
   text-decoration: underline;
+}
+
+.contact-teaser {
+  color: var(--fg);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.contact-box--clickable {
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.contact-box--clickable:hover {
+  background: rgba(58,158,95,0.15);
+  border-color: rgba(58,158,95,0.6);
+}
+
+.contact-box--clickable[aria-expanded="true"] .pricing-arrow {
+  transform: rotate(180deg);
+}
+/* ── PRICING DETAILS ──────────────────────────────── */
+.pricing-arrow {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--accent-bright);
+}
+.pricing-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+  overflow: hidden;
+}
+
+.pricing-details.open {
+  grid-template-rows: 1fr;
+}
+
+.pricing-details > * {
+  overflow: hidden;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
+.pricing-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pricing-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.pricing-value {
+  color: var(--fg);
+  font-size: 1rem;
+}
+
+.pricing-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
 }
 
 /* ── STORIES ──────────────────────────────────────── */
