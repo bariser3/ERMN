@@ -33,15 +33,21 @@ body {
 /* ── COOKIE BANNER ────────────────────────────────── */
 /* ── COOKIE OVERLAY ───────────────────────────────── */
 .cookie-overlay {
+  display: none;
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.82);
   backdrop-filter: blur(6px);
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cookie-overlay.cookie-hide {
+  opacity: 0 !important;
 }
 
 .cookie-modal {
